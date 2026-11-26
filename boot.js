@@ -43,7 +43,7 @@
     if (!d) {
       r.innerHTML = '';
       d = document.createElement('div'); d.id = 'hz-boot';
-      var b = document.createElement('b'); b.textContent = 'أكاديمية حمزة شريف'; d.appendChild(b);
+      var b = document.createElement('b'); b.textContent = 'علمنا'; d.appendChild(b);
       var s = document.createElement('span'); s.id = 'hz-bt'; d.appendChild(s);
       r.appendChild(d);
     }
