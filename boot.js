@@ -1,4 +1,6 @@
 (function () {
+  // 0) Never run inside someone else's frame (clickjacking). The YouTube players are our own children and are not affected.
+  try { if (window.top !== window.self) { document.documentElement.style.display = 'none'; window.top.location.href = window.self.location.href; } } catch (e) { document.documentElement.style.display = 'none'; }
   // 1) Storage that throws (blocked cookies / private modes) must not kill the app.
   ['localStorage', 'sessionStorage'].forEach(function (n) {
     var ok = true;
