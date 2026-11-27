@@ -28,9 +28,12 @@ self.addEventListener('fetch', function (e) {
 
 // Study reminder push (no payload): the worker wakes us, we show a fixed message.
 self.addEventListener('push', function (e) {
-  e.waitUntil(self.registration.showNotification('علمنا · وقت مذاكرتك', {
+  e.waitUntil(caches.open(C).then(function (c) { return c.match(new URL('./__hz-role', self.registration.scope).href); }).then(function (m) { return m ? m.text() : ''; }).catch(function () { return ''; }).then(function (role) {
+    if (role === 'parent') return self.registration.showNotification('علمنا · جديد عن ابنك', { body: 'فيه نشاط جديد. افتح صفحة ولي الأمر.', icon: './icon-192.png', badge: './favicon-48.png', tag: 'hz-parent', renotify: true, lang: 'ar', dir: 'rtl', data: { url: './#/parent' } });
+    return self.registration.showNotification('علمنا · وقت مذاكرتك', {
     body: 'ابدأ بتحدي النهاردة أو كمّل من آخر درس.',
     icon: './icon-192.png', badge: './favicon-48.png', tag: 'hz-study', renotify: false, lang: 'ar', dir: 'rtl', data: { url: './#/challenge' }
+    });
   }));
 });
 self.addEventListener('notificationclick', function (e) {
