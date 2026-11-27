@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eng-hamza-shreif.github.io/sitemap.xml
